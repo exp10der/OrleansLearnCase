@@ -18,6 +18,7 @@
         {
             var config = ClusterConfiguration.LocalhostPrimarySilo();
             config.AddMemoryStorageProvider();
+            config.AddAzureTableStorageProvider("AzureStore", "UseDevelopmentStorage=true");
 
             var host = new SiloHost("Test", config);
             host.LoadOrleansConfig();
