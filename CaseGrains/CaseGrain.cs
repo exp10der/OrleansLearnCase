@@ -1,12 +1,36 @@
 ﻿namespace CaseGrains
 {
+    using System;
     using System.Linq;
     using System.Threading.Tasks;
     using Interfaces;
     using Orleans;
+    using Orleans.Providers;
 
-    public class CaseGrain : Grain, ICase
+    [StorageProvider(ProviderName = "AzureStore")]
+    public class CaseGrain : Grain<CaseGrainState>, ICase
     {
-        public Task<string> RunTest(string args) => Task.FromResult(string.Join("", args.Reverse()));
+        private readonly Action<string> _log;
+
+        public CaseGrain()
+        {
+            _log = Console.WriteLine;
+        }
+
+        public async Task<string> RunTest(string args)
+        {
+            State.CountTestRuns++;
+            await WriteStateAsync();
+            return string.Join("", args.Reverse());
+        }
+
+        public override Task OnActivateAsync()
+        {
+            var id = this.GetPrimaryKeyLong();
+
+            _log(id.ToString());
+
+            return base.OnActivateAsync();
+        }
     }
 }
