@@ -19,7 +19,7 @@
         {
             var config = ClusterConfiguration.LocalhostPrimarySilo();
             config.AddMemoryStorageProvider();
-            config.AddJsonFileStorageProvider("", "AzureStore");
+            config.AddJsonFileStorageProvider(AppDomain.CurrentDomain.BaseDirectory, "AzureStore");
             //config.AddAzureTableStorageProvider("AzureStore", "UseDevelopmentStorage=true");
 
             var host = new SiloHost("Test", config);
