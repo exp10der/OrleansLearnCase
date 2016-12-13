@@ -25,7 +25,7 @@
             _strategyTakeFileInfo =
                 (grainType, grainReference) =>
                     new FileInfo(Path.Combine(Directory,
-                        string.Format($"{grainType}-{grainReference.ToKeyString()}")));
+                        string.Format($"{grainType}-{grainReference.ToKeyString()}.json")));
 
             return TaskDone.Done;
         }
