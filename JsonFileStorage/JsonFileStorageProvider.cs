@@ -1,9 +1,9 @@
 ﻿namespace JsonFileStorage
 {
     using System;
-    using System.Collections.Generic;
     using System.IO;
     using System.Threading.Tasks;
+    using CaseGrains;
     using Newtonsoft.Json;
     using Orleans;
     using Orleans.Providers;
@@ -40,7 +40,7 @@
             using (var stream = fileInfo.OpenText())
             {
                 var stringData = await stream.ReadToEndAsync();
-                var json = JsonConvert.DeserializeObject<Dictionary<string, object>>(stringData);
+                var json = JsonConvert.DeserializeObject<CaseGrainState>(stringData);
                 grainState.State = json;
             }
         }
