@@ -1,6 +1,7 @@
 ﻿namespace SiloHost
 {
     using System;
+    using JsonFileStorage;
     using Orleans.Runtime;
     using Orleans.Runtime.Configuration;
     using Orleans.Runtime.Host;
@@ -18,7 +19,8 @@
         {
             var config = ClusterConfiguration.LocalhostPrimarySilo();
             config.AddMemoryStorageProvider();
-            config.AddAzureTableStorageProvider("AzureStore", "UseDevelopmentStorage=true");
+            config.AddJsonFileStorageProvider("", "AzureStore");
+            //config.AddAzureTableStorageProvider("AzureStore", "UseDevelopmentStorage=true");
 
             var host = new SiloHost("Test", config);
             host.LoadOrleansConfig();

@@ -209,6 +209,10 @@
       <Project>{4bb47a57-095b-4986-8057-73e7453fb104}</Project>
       <Name>Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\JsonFileStorage\JsonFileStorage.csproj">
+      <Project>{3e0d9248-ec64-4883-9850-15d09968a98f}</Project>
+      <Name>JsonFileStorage</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
